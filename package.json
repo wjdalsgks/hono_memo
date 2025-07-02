@@ -1,11 +1,12 @@
 {
   "name": "hono_memo",
-  "type": "module",
+  "type": "commonjs",
   "scripts": {
     "clean": "rimraf dist",
     "dev": "cross-env NODE_ENV=development tsx watch src/index.ts",
     "build": "npm run clean && tsc",
-    "start": "npm run build && cross-env NODE_ENV=production node dist/index.js"
+    "start": "npm run build && cross-env NODE_ENV=production node dist/index.js",
+    "start:vercel": "cross-env NODE_ENV=production node dist/index.js"
   },
   "dependencies": {
     "@hono/node-server": "^1.14.3",

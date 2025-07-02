@@ -13,6 +13,9 @@ exports.TUserRoles = void 0;
 const typeorm_1 = require("typeorm");
 const TUser_1 = require("./TUser");
 let TUserRoles = class TUserRoles {
+    idp;
+    roleName;
+    userIdp;
 };
 exports.TUserRoles = TUserRoles;
 __decorate([
@@ -20,19 +23,19 @@ __decorate([
     __metadata("design:type", Number)
 ], TUserRoles.prototype, "idp", void 0);
 __decorate([
-    (0, typeorm_1.Column)("character varying", { name: "role_name", length: 50 }),
+    (0, typeorm_1.Column)("character varying", {
+        name: "role_name",
+        nullable: true,
+        length: 50,
+        default: () => "''''''",
+    }),
     __metadata("design:type", String)
 ], TUserRoles.prototype, "roleName", void 0);
 __decorate([
-    (0, typeorm_1.Column)("timestamp with time zone", {
-        name: "assigned_at",
-        nullable: true,
-        default: () => "now()",
+    (0, typeorm_1.ManyToOne)(() => TUser_1.TUser, (tUser) => tUser.tUserRoles, {
+        onDelete: "CASCADE",
+        onUpdate: "CASCADE",
     }),
-    __metadata("design:type", Object)
-], TUserRoles.prototype, "assignedAt", void 0);
-__decorate([
-    (0, typeorm_1.ManyToOne)(() => TUser_1.TUser, (tUser) => tUser.tUserRoles, { onDelete: "CASCADE" }),
     (0, typeorm_1.JoinColumn)([{ name: "user_idp", referencedColumnName: "idp" }]),
     __metadata("design:type", TUser_1.TUser)
 ], TUserRoles.prototype, "userIdp", void 0);

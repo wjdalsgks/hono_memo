@@ -10,7 +10,7 @@ export class TMemo {
     name: "title",
     nullable: true,
     length: 500,
-    default: () => "''''''",
+    default: () => "''''",
   })
   title: string | null;
 

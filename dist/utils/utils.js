@@ -14,7 +14,7 @@ const bcrypt_1 = __importDefault(require("bcrypt"));
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 //@ts-ignore
 const crypto_1 = __importDefault(require("crypto"));
-const JWT_SECRET = process.env.JWT_SECRET || "your_jwt_secret_key";
+const JWT_SECRET = String(process.env.JWT_SECRET);
 const ENCRYPTION_KEY = process.env.ENCRYPTION_KEY || "your_32_byte_encryption_key_123456"; // 32 bytes
 const IV_LENGTH = 16; // AES block size
 // 단방향 암호화: 비밀번호 해시 생성
@@ -50,6 +50,7 @@ const decryptData = (encryptedData) => {
 exports.decryptData = decryptData;
 // JWT 생성
 const generateToken = (payload, expiresIn = "1h") => {
+    //@ts-ignore
     return jsonwebtoken_1.default.sign(payload, JWT_SECRET, { expiresIn });
 };
 exports.generateToken = generateToken;

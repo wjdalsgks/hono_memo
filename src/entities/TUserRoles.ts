@@ -14,17 +14,18 @@ export class TUserRoles {
   @PrimaryGeneratedColumn({ type: "integer", name: "idp" })
   idp: number;
 
-  @Column("character varying", { name: "role_name", length: 50 })
-  roleName: string;
-
-  @Column("timestamp with time zone", {
-    name: "assigned_at",
+  @Column("character varying", {
+    name: "role_name",
     nullable: true,
-    default: () => "now()",
+    length: 50,
+    default: () => "''''''",
   })
-  assignedAt: Date | null;
+  roleName: string | null;
 
-  @ManyToOne(() => TUser, (tUser) => tUser.tUserRoles, { onDelete: "CASCADE" })
+  @ManyToOne(() => TUser, (tUser) => tUser.tUserRoles, {
+    onDelete: "CASCADE",
+    onUpdate: "CASCADE",
+  })
   @JoinColumn([{ name: "user_idp", referencedColumnName: "idp" }])
   userIdp: TUser;
 }

@@ -13,6 +13,10 @@ exports.TUser = void 0;
 const typeorm_1 = require("typeorm");
 const TUserRoles_1 = require("./TUserRoles");
 let TUser = class TUser {
+    idp;
+    username;
+    password;
+    tUserRoles;
 };
 exports.TUser = TUser;
 __decorate([
@@ -22,31 +26,21 @@ __decorate([
 __decorate([
     (0, typeorm_1.Column)("character varying", {
         name: "username",
+        nullable: true,
         length: 50,
-        default: () => "''''",
+        default: () => "''''''",
     }),
     __metadata("design:type", String)
 ], TUser.prototype, "username", void 0);
 __decorate([
     (0, typeorm_1.Column)("character varying", {
-        name: "email",
-        length: 100,
-        default: () => "''''",
+        name: "password",
+        nullable: true,
+        length: 255,
+        default: () => "''''''",
     }),
-    __metadata("design:type", String)
-], TUser.prototype, "email", void 0);
-__decorate([
-    (0, typeorm_1.Column)("character varying", { name: "password", length: 255 }),
     __metadata("design:type", String)
 ], TUser.prototype, "password", void 0);
-__decorate([
-    (0, typeorm_1.Column)("timestamp with time zone", {
-        name: "created_at",
-        nullable: true,
-        default: () => "now()",
-    }),
-    __metadata("design:type", Object)
-], TUser.prototype, "createdAt", void 0);
 __decorate([
     (0, typeorm_1.OneToMany)(() => TUserRoles_1.TUserRoles, (tUserRoles) => tUserRoles.userIdp),
     __metadata("design:type", Array)

@@ -41,12 +41,12 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const node_server_1 = require("@hono/node-server");
 const hono_1 = require("hono");
 const cors_1 = require("hono/cors");
-const data_source_1 = require("./data-source");
+const data_source_js_1 = require("./data-source.js");
 const dotenv = __importStar(require("dotenv"));
 const test1_js_1 = __importDefault(require("./router/test1.js"));
 const dbtest_js_1 = __importDefault(require("./router/dbtest/dbtest.js"));
 const auth_js_1 = __importDefault(require("./router/auth/auth.js"));
-const memo_1 = __importDefault(require("./router/memo/memo"));
+const memo_js_1 = __importDefault(require("./router/memo/memo.js"));
 // app 이라는 객체를 만들어라. Hono 라는 클래스를 통해서
 // 클래스란건 어떻게 알음?? new 키워드 보고 눈치챔
 const app = new hono_1.Hono();
@@ -61,7 +61,7 @@ app.use("*", (0, cors_1.cors)({
     allowHeaders: ["*"],
 }));
 /** DB 연결 */
-data_source_1.AppDataSource.initialize()
+data_source_js_1.AppDataSource.initialize()
     .then(() => {
     console.log("Data Source has been initialized!");
 })
@@ -78,7 +78,7 @@ app.get("/", (c) => {
 app.route("/test1", test1_js_1.default);
 app.route("/dbtest", dbtest_js_1.default);
 app.route("/api/auth", auth_js_1.default);
-app.route("/api/memo", memo_1.default);
+app.route("/api/memo", memo_js_1.default);
 /** 이건 코드가 드럽게 어렵게 생김
  * port:3000, console.log(`Server is running on http://localhost:${info.port}`);
  * 이걸 보고, 서버 돌리는 코드구나 하고 알게됨

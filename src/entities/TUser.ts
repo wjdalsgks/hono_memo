@@ -15,27 +15,19 @@ export class TUser {
 
   @Column("character varying", {
     name: "username",
+    nullable: true,
     length: 50,
-    default: () => "''''",
+    default: () => "''''''",
   })
-  username: string;
+  username: string | null;
 
   @Column("character varying", {
-    name: "email",
-    length: 100,
-    default: () => "''''",
-  })
-  email: string;
-
-  @Column("character varying", { name: "password", length: 255 })
-  password: string;
-
-  @Column("timestamp with time zone", {
-    name: "created_at",
+    name: "password",
     nullable: true,
-    default: () => "now()",
+    length: 255,
+    default: () => "''''''",
   })
-  createdAt: Date | null;
+  password: string | null;
 
   @OneToMany(() => TUserRoles, (tUserRoles) => tUserRoles.userIdp)
   tUserRoles: TUserRoles[];
