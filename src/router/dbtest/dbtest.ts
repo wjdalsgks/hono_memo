@@ -8,7 +8,7 @@ import { TDummy1 } from "../../entities/TDummy1.js";
 
 const router = new Hono();
 
-router.get("/t_dummy1", (c) => {
+router.get("/t_dummy1", async (c) => {
   /**
    * http://localhost:3000/test1?ddd=33&a=뭐뭐뭐
    * 데이터 이름이 ddd 라는놈의 값을 가져와라
@@ -16,7 +16,7 @@ router.get("/t_dummy1", (c) => {
   let ddd = c?.req?.query("ddd");
   let a = c?.req?.query("a");
   const dummy1Repo = AppDataSource.getRepository(TDummy1);
-  let dummy1data = dummy1Repo.find({ take: 1000 });
+  let dummy1data = await dummy1Repo.find({ take: 1000 });
   return c.json({ dummy1data });
 });
 

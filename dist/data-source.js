@@ -38,7 +38,10 @@ exports.AppDataSource = void 0;
 require("reflect-metadata");
 const typeorm_1 = require("typeorm");
 const dotenv = __importStar(require("dotenv"));
-const path = __importStar(require("path"));
+const TDummy1_1 = require("./entities/TDummy1");
+const TMemo_1 = require("./entities/TMemo");
+const TUser_1 = require("./entities/TUser");
+const TUserRoles_1 = require("./entities/TUserRoles");
 const envFile = process.env.NODE_ENV === "production"
     ? ".env.production"
     : ".env.development";
@@ -52,7 +55,7 @@ exports.AppDataSource = new typeorm_1.DataSource({
     database: process.env.DB_NAME,
     synchronize: false,
     logging: false,
-    entities: [path.join(__dirname, "/entities/**/*.{ts,js}")],
+    entities: [TDummy1_1.TDummy1, TMemo_1.TMemo, TUser_1.TUser, TUserRoles_1.TUserRoles],
     ssl: {
         rejectUnauthorized: false,
     },

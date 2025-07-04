@@ -73,7 +73,7 @@ data_source_js_1.AppDataSource.initialize()
 // endpoint도 있다 "/"
 // 또 테스트도 해보고, "아... 이게 api endpoint구나" 이렇게 아는것
 app.get("/", (c) => {
-    return c.text("Hello Hono!");
+    return c.text(`${__dirname}`);
 });
 app.route("/test1", test1_js_1.default);
 app.route("/dbtest", dbtest_js_1.default);
